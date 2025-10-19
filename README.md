@@ -19,3 +19,8 @@
 <p align="left"></p>
 
 ###
+
+Estrutura do repositório  
+
+/academicos -> projetos da faculdade  
+/pessoais -> projetos pessoais  
