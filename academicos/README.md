@@ -10,6 +10,7 @@ Aqui estão os trabalhos e projetos que desenvolvi durante a faculdade.
 
 ### 2. Gerador de Senha Requisitos em Python
 * **Descrição:** Um programa simples de gerar senhas com requisitos. O programa irá gerar e validar 3 senhas automaticamente:
+
 #Exemplos
 
 Senha Validada 1: aB3$kL9@xP
