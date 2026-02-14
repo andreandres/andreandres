@@ -21,3 +21,6 @@ Senha Validada 3: X7@pL$3mQq
 
 * **Repositório:** [https://github.com/andreandres/gerador-de-senha](https://github.com/andreandres/gerador-de-senha) 
 
+### 3. Fork Spoon-Knife
+* ** Descrição:** Tradução feita do README do repositório Spoon-Knife para treinar o uso do fork
+* **Repositório:** [https://github.com/andreandres/Spoon-Knife](https://github.com/andreandres/Spoon-Knife) 
