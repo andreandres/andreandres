@@ -1,5 +1,5 @@
 # 💫 Sobre:
-✨ Estudante de Ciência da Computação no UniCEUB<br>🎯 Meu objetivo é conseguir uma oportunidade de estágio onde eu possa aplicar minha paixão por resolver problemas, colaborar com uma equipe e aprender com profissionais experientes.<br>📌​LinkedIn: www.linkedin.com/in/andré-soares-0ba07439a
+✨ Estudante de Ciência da Computação no UniCEUB<br>📌​LinkedIn: www.linkedin.com/in/andré-soares-0ba07439a
 
 
 Estrutura do repositório  
