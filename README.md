@@ -1,5 +1,5 @@
 # 💫 Sobre:
-✨ Estudante de Ciência da Computação no UniCEUB<br>📌​LinkedIn: www.linkedin.com/in/andré-soares-0ba07439a
+✨ Estudante de Ciência da Computação no UniCEUB<br>📌​LinkedIn: www.linkedin.com/in/andrejandrade
 
 
 Estrutura do repositório  
