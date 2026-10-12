@@ -1,0 +1,3 @@
+com\suaapi\SuaApiApplication.class
+com\suaapi\controller\LivroController.class
+com\suaapi\model\Livro.class
