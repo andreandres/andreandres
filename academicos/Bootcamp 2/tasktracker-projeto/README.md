@@ -11,7 +11,7 @@
 
 O TaskTracker é uma aplicação simples de linha de comando (CLI) para cadastrar e visualizar tarefas durante a execução do programa. As tarefas ficam armazenadas em uma lista de dicionários enquanto o programa está aberto.
 
-O projeto foi desenvolvido como parte da **Fase 2 - Etapa Intermediária do Bootcamp II**.
+O projeto foi desenvolvido como parte da **Fase 2 - Etapa Intermediária do Bootcamp II** e preparado para a **Fase 3 - Entrega Final**, com conteinerização em Docker.
 
 ## Funcionalidades implementadas
 
@@ -25,6 +25,8 @@ O projeto foi desenvolvido como parte da **Fase 2 - Etapa Intermediária do Boot
 - Tratamento de opções inválidas do menu.
 - Encerramento educado do programa.
 
+As tarefas são mantidas em memória e são perdidas quando o programa é encerrado.
+
 O projeto não possui persistência em arquivo, banco de dados, login, edição ou exclusão de tarefas, pois esses recursos não fazem parte desta fase.
 
 ## Tecnologias utilizadas
@@ -32,6 +34,8 @@ O projeto não possui persistência em arquivo, banco de dados, login, edição 
 - Python 3
 - Git
 - GitHub
+- Docker
+- Docker Compose
 
 Não são necessárias bibliotecas externas nem instalação com pip.
 
@@ -41,13 +45,16 @@ Não são necessárias bibliotecas externas nem instalação com pip.
 tasktracker-projeto/
 ├── README.md
 ├── .gitignore
+├── .dockerignore
 ├── docs/
 │   └── planejamento_logico.pdf
+├── Dockerfile
+├── docker-compose.yml
 └── src/
     └── main.py
 ```
 
-## Como executar
+## Execução local com Python
 
 1. Abra a pasta `tasktracker-projeto` no VS Code.
 2. Confirme que o Python 3 está instalado:
@@ -64,6 +71,51 @@ tasktracker-projeto/
    ```
 
 5. Use as opções do menu para cadastrar, visualizar ou encerrar o programa.
+
+## Execução com Docker
+
+### Pré-requisitos
+
+É necessário ter o mecanismo do Docker em execução. No Windows, o Docker Desktop deve estar instalado e configurado para utilizar contêineres Linux.
+
+Verifique as versões instaladas:
+
+```bash
+docker --version
+docker compose version
+```
+
+Construa a imagem:
+
+```bash
+docker build -t tasktracker:latest .
+```
+
+Execute diretamente:
+
+```bash
+docker run --rm -it tasktracker:latest
+```
+
+Execute pelo Docker Compose:
+
+```bash
+docker compose run --build --rm tasktracker
+```
+
+Valide o arquivo Compose sem iniciar o programa:
+
+```bash
+docker compose config
+```
+
+O comando recomendado para este projeto é `docker compose run`, porque o TaskTracker é interativo e utiliza `input()` para receber dados pelo terminal. O comando `docker compose up` não é recomendado para a interação com o menu neste projeto.
+
+Uma **imagem** é o pacote imutável usado como base para executar a aplicação. Um **contêiner** é uma execução isolada dessa imagem.
+
+O projeto utiliza `python:3.11-slim` por fornecer Python 3.11 em uma imagem menor, adequada a uma aplicação que usa somente a biblioteca padrão. As opções `-i` e `-t` do `docker run` mantêm a entrada interativa e disponibilizam um terminal. No Compose, `stdin_open: true` mantém a entrada padrão aberta e `tty: true` cria um terminal para a interação.
+
+A opção `--rm` remove o contêiner quando o programa termina, sem apagar a imagem.
 
 ## Validações existentes
 
