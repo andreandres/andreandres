@@ -3,7 +3,6 @@
 ## Dados do aluno
 
 - **Nome:** André Joaquim Soares de Andrade
-- **RA:** 22552746
 - **Curso:** Ciência da Computação
 - **Disciplina:** Bootcamp II
 
