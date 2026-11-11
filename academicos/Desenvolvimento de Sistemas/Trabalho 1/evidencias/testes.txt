@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.com.trabalho.estoque.ProdutoApiTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.994 s -- in br.com.trabalho.estoque.ProdutoApiTest
