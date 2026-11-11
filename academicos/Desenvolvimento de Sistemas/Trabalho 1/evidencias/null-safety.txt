@@ -1,8 +1,0 @@
-Verificacao de nulidade das fontes Java de producao e testes
-Compilador: Eclipse JDT ECJ 3.46.200, fornecido pela extensao Java do VS Code instalada.
-Java alvo: 17; codificacao: UTF-8.
-Analise habilitada: null, nullAnnot, nullUncheckedConversion.
-Anotacoes: org.springframework.lang.Nullable, NonNull e NonNullApi.
-Antes da correcao: 33 avisos.
-Depois da correcao: 0 avisos, 0 erros; codigo de saida 0.
-Maven clean verify: BUILD SUCCESS; 5 testes HTTP, 0 falhas e 0 erros.
