@@ -1,0 +1,5 @@
+Analise estatica de nulidade das fontes Java de producao e testes.
+Compilador: Eclipse JDT fornecido pela extensao Java instalada no VS Code.
+Alvo Java 17; UTF-8; flags null, nullAnnot e nullUncheckedConversion habilitadas.
+Anotacoes Spring NonNull, Nullable e NonNullApi reconhecidas.
+Resultado: 0 avisos, 0 erros, codigo de saida 0.

@@ -1,0 +1,17 @@
+OK 1: Identificadores HTML unicos, incluindo icones e campos de formulario.
+OK 2: Estado inicial vazio e carregamento real pela API.
+OK 3: Criacao de categoria pela GUI e preenchimento do select via HTTP.
+OK 4: Erro 400 real do backend exibido no formulario, com destaque do campo invalido.
+OK 5: Cadastro, listagem com JOIN e resumo monetario calculado a partir dos dados reais.
+OK 6: Busca, limpeza de filtros e filtro por situacao do estoque.
+OK 7: Edicao por PUT, atualizacao de quantidades e recarga da pagina preservando o cadastro.
+OK 8: Conflito 409 por categoria duplicada apresentado na GUI.
+OK 9: Exclusao de categoria vinculada bloqueada, com mensagem amigavel e tela funcional.
+OK 10: Edicao de categoria refletida automaticamente nos produtos relacionados.
+OK 11: Nomes renderizados como texto, sem interpretar HTML recebido da API.
+OK 12: Interface responsiva verificada em 1440 px e 390 px, sem overflow da pagina.
+OK 13: Exclusao de produto por DELETE a partir da interface.
+OK 14: Falha de conexao tratada com mensagem e recuperacao pelo botao Atualizar.
+OK 15: Nenhuma excecao JavaScript nao tratada no navegador.
+
+15 verificacoes aprovadas.

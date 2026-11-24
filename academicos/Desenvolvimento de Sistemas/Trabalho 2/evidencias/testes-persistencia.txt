@@ -1,0 +1,4 @@
+OK: categoria e produto cadastrados por HTTP no H2 em arquivo.
+OK: processo Java encerrado e iniciado novamente com o mesmo banco.
+OK: produto, categoria relacionada, valores e data recuperados sem alteracoes.
+OK: interface entregue pelo JAR final na mesma origem da API.

@@ -1,0 +1,8 @@
+﻿backend/target/
+backend/data/
+.tools/
+node_modules/
+*.zip
+*.log
+.idea/
+.vscode/

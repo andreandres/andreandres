@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172b26">
+  <meta name="description" content="Organize produtos, categorias e quantidades do seu estoque.">
+  <title>Estoque — Gestão de produtos</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23172b26'/%3E%3Cpath d='m32 12 20 10v20L32 52 12 42V22Z M12 22l20 10 20-10 M32 32v20 M22 17l20 10' fill='none' stroke='%23c7f28a' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="box" viewBox="0 0 24 24"><path d="m12 3 9 4.5v9L12 21l-9-4.5v-9L12 3Z M3 7.5l9 4.5 9-4.5 M12 12v9 M7.5 5.25l9 4.5"/></symbol>
+    <symbol id="grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="tag" viewBox="0 0 24 24"><path d="M3 3h8l10 10-8 8L3 11V3Z"/><circle cx="7.5" cy="7.5" r="1"/></symbol>
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="edit" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l5-1L20 8a3.5 3.5 0 0 0-5-5L4 14l-1 7 6-2"/></symbol>
+    <symbol id="trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></symbol>
+    <symbol id="refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5M5 7a8 8 0 0 1 13-2l2 2M4 17l2 2a8 8 0 0 0 13-2"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="layers" viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8l10-5ZM2 12l10 5 10-5M2 16l10 5 10-5"/></symbol>
+    <symbol id="wallet" viewBox="0 0 24 24"><path d="M21 8H5a3 3 0 0 1 0-6h13v6M3 5v14a2 2 0 0 0 2 2h16V8M21 12h-6v5h6"/><path d="M17 14.5h.01"/></symbol>
+  </svg>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Estoque, início"><span class="brand-mark"><svg><use href="#box"/></svg></span>estoque<span class="brand-period">.</span></a>
+    <div class="workspace"><span class="workspace-avatar">ME</span><div><strong>Meu estoque</strong><span>Gestão de produtos</span></div></div>
+    <p class="nav-label">PRINCIPAL</p>
+    <nav aria-label="Navegação principal">
+      <button class="nav-item active" data-view="produtos" aria-current="page"><svg><use href="#grid"/></svg>Produtos<span id="nav-product-count" class="nav-count">0</span></button>
+      <button class="nav-item" data-view="categorias"><svg><use href="#tag"/></svg>Categorias<span id="nav-category-count" class="nav-count">0</span></button>
+    </nav>
+    <div class="sidebar-note"><svg><use href="#layers"/></svg><strong>Tudo no seu lugar.</strong><p>Organize seu catálogo e acompanhe o que está em estoque.</p></div>
+    <div class="sidebar-footer"><span class="user-avatar">ME</span><div><strong>Meu espaço</strong><span>Controle de estoque</span></div></div>
+  </aside>
+
+  <div class="main-shell">
+    <header class="topbar"><span>Painel de gestão <span class="breadcrumb-slash">/</span> <strong id="breadcrumb">Produtos</strong></span><span class="topbar-note">Seu catálogo, organizado.</span></header>
+    <main id="conteudo" tabindex="-1">
+      <div class="page-heading"><div><p class="eyebrow">CONTROLE DE ESTOQUE</p><h1 id="page-title">Seus produtos</h1><p id="page-subtitle">Uma visão clara de tudo o que você tem.</p></div><div class="heading-actions"><button id="reload" class="button button-secondary" type="button"><svg><use href="#refresh"/></svg><span>Atualizar</span></button><button id="create-main" class="button button-primary" type="button"><svg><use href="#plus"/></svg><span>Novo produto</span></button></div></div>
+      <div id="page-error" class="notice notice-error" role="alert" hidden></div>
+
+      <section class="metrics" aria-label="Resumo do estoque">
+        <article class="metric-card"><div class="metric-top"><span>Produtos cadastrados</span><span class="metric-icon"><svg><use href="#box"/></svg></span></div><strong id="metric-products">—</strong><p id="metric-categories">Seu catálogo de produtos</p></article>
+        <article class="metric-card"><div class="metric-top"><span>Unidades em estoque</span><span class="metric-icon"><svg><use href="#layers"/></svg></span></div><strong id="metric-units">—</strong><p id="metric-low">Quantidades disponíveis</p></article>
+        <article class="metric-card metric-value"><div class="metric-top"><span>Valor em estoque</span><span class="metric-icon"><svg><use href="#wallet"/></svg></span></div><strong id="metric-value">—</strong><p>Soma de preço × quantidade</p></article>
+      </section>
+
+      <section id="products-view" class="catalog" aria-labelledby="catalog-title">
+        <div class="section-heading"><div><h2 id="catalog-title">Catálogo de produtos <span id="product-count" class="count-badge">0</span></h2><p>Consulte e mantenha seu estoque em dia.</p></div></div>
+        <div class="filters"><label class="search-field"><svg><use href="#icon-search"/></svg><input id="search" type="search" placeholder="Buscar por nome do produto..." aria-label="Buscar produto por nome"></label><label class="select-filter"><span class="sr-only">Filtrar categoria</span><select id="category-filter"><option value="">Todas as categorias</option></select></label><label class="select-filter"><span class="sr-only">Filtrar situação do estoque</span><select id="stock-filter"><option value="">Todo o estoque</option><option value="low">Estoque baixo (até 5)</option><option value="empty">Sem estoque</option></select></label></div>
+        <div class="table-scroll"><table><thead><tr><th scope="col">Produto</th><th scope="col">Categoria</th><th scope="col" class="number">Preço unitário</th><th scope="col" class="number">Quantidade</th><th scope="col">Situação</th><th scope="col" class="actions-heading">Ações</th></tr></thead><tbody id="products-body"></tbody></table></div>
+        <div id="products-empty" class="empty-state" hidden><span class="empty-icon"><svg><use href="#box"/></svg></span><h3 id="empty-title">Seu estoque começa aqui</h3><p id="empty-description">Cadastre uma categoria e adicione seu primeiro produto.</p><button id="empty-create" class="button button-primary" type="button">Adicionar produto</button><button id="clear-filters" class="button button-secondary" type="button" hidden>Limpar filtros</button></div>
+        <div class="table-footer"><span id="results-count" role="status">Carregando produtos...</span><span>Dados salvos automaticamente</span></div>
+      </section>
+
+      <section id="categories-view" class="catalog" aria-labelledby="categories-title" hidden><div class="section-heading"><div><h2 id="categories-title">Categorias do catálogo</h2><p>Agrupe produtos para encontrar tudo com facilidade.</p></div></div><div id="categories-grid" class="categories-grid"></div><div id="categories-empty" class="empty-state" hidden><span class="empty-icon"><svg><use href="#tag"/></svg></span><h3>Um lugar para cada produto</h3><p>Crie sua primeira categoria para começar a organizar o catálogo.</p><button id="empty-category" class="button button-primary" type="button">Criar categoria</button></div><div class="category-note">Categorias com produtos vinculados só podem ser excluídas após a reclassificação ou exclusão desses produtos.</div></section>
+      <footer class="page-footer"><span>Estoque<span class="brand-period">.</span></span><span>Organização para o seu dia a dia.</span></footer>
+    </main>
+  </div>
+
+  <dialog id="product-dialog" aria-labelledby="product-dialog-title">
+    <form id="product-form" novalidate>
+      <div class="dialog-heading"><div><p class="eyebrow">CATÁLOGO</p><h2 id="product-dialog-title">Novo produto</h2></div><button class="icon-button" type="button" data-close="product-dialog" aria-label="Fechar formulário"><svg><use href="#close"/></svg></button></div>
+      <p class="dialog-description">Preencha as informações e escolha uma categoria.</p>
+      <div id="product-error" class="notice notice-error" role="alert" hidden></div>
+      <div class="form-fields"><label>Nome do produto <span class="required">*</span><input id="product-name" name="nome" maxlength="120" required placeholder="Ex.: Mouse sem fio" autocomplete="off" aria-describedby="error-nome"><span id="error-nome" class="field-error"></span></label>
+      <div class="field-row"><label>Preço unitário (R$) <span class="required">*</span><input id="product-price" name="preco" type="number" min="0" max="9999999999.99" step="0.01" required placeholder="0,00" aria-describedby="error-preco"><span id="error-preco" class="field-error"></span></label><label>Quantidade <span class="required">*</span><input id="product-quantity" name="quantidadeEstoque" type="number" min="0" max="2147483647" step="1" required placeholder="0" aria-describedby="error-quantidadeEstoque"><span id="error-quantidadeEstoque" class="field-error"></span></label></div>
+      <label>Categoria <span class="required">*</span><select id="product-category" name="categoriaId" required aria-describedby="error-categoriaId"><option value="">Selecione uma categoria</option></select><span id="error-categoriaId" class="field-error"></span></label><button id="quick-category" class="text-button" type="button"><svg><use href="#plus"/></svg>Criar uma categoria</button></div>
+      <div class="dialog-footer"><button class="button button-secondary" type="button" data-close="product-dialog">Cancelar</button><button id="save-product" class="button button-primary" type="submit">Cadastrar produto</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="category-dialog" aria-labelledby="category-dialog-title"><form id="category-form" novalidate><div class="dialog-heading"><div><p class="eyebrow">ORGANIZAÇÃO</p><h2 id="category-dialog-title">Nova categoria</h2></div><button class="icon-button" type="button" data-close="category-dialog" aria-label="Fechar categoria"><svg><use href="#close"/></svg></button></div><p class="dialog-description">Use um nome que ajude a identificar seus produtos.</p><div id="category-error" class="notice notice-error" role="alert" hidden></div><div class="form-fields"><label>Nome da categoria <span class="required">*</span><input id="category-name" name="nome" maxlength="80" required placeholder="Ex.: Informática" aria-describedby="error-category-name"><span id="error-category-name" class="field-error"></span></label></div><div class="dialog-footer"><button class="button button-secondary" type="button" data-close="category-dialog">Cancelar</button><button id="save-category" class="button button-primary" type="submit">Criar categoria</button></div></form></dialog>
+
+  <dialog id="delete-dialog" aria-labelledby="delete-title"><form id="delete-form"><div class="dialog-heading"><h2 id="delete-title">Excluir produto?</h2><button class="icon-button" type="button" data-close="delete-dialog" aria-label="Cancelar exclusão"><svg><use href="#close"/></svg></button></div><p id="delete-description" class="dialog-description"></p><div id="delete-error" class="notice notice-error" role="alert" hidden></div><p class="delete-warning">Essa ação não pode ser desfeita.</p><div class="dialog-footer"><button class="button button-secondary" type="button" data-close="delete-dialog" autofocus>Cancelar</button><button id="confirm-delete" class="button button-danger" type="submit">Excluir</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

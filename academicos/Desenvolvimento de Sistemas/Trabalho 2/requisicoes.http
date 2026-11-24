@@ -1,0 +1,72 @@
+@baseUrl = http://localhost:8080
+@categoriaId = 1
+@produtoId = 1
+
+### 1. Criar categoria — 201 + Location. Copie o id para categoriaId.
+POST {{baseUrl}}/api/categorias
+Content-Type: application/json
+
+{"nome":"Informática"}
+
+### 2. Listar categorias — 200
+GET {{baseUrl}}/api/categorias
+
+### 3. Buscar categoria — 200
+GET {{baseUrl}}/api/categorias/{{categoriaId}}
+
+### 4. Criar produto relacionado — 201. Copie o id para produtoId.
+POST {{baseUrl}}/api/produtos
+Content-Type: application/json
+
+{"nome":"Mouse sem fio","preco":49.90,"quantidadeEstoque":10,"categoriaId":{{categoriaId}}}
+
+### 5. Listar produtos com categoria no JSON — 200
+GET {{baseUrl}}/api/produtos
+
+### 6. Filtrar nome e categoria — 200
+GET {{baseUrl}}/api/produtos?nome=mouse&categoriaId={{categoriaId}}
+
+### 7. Buscar produto — 200
+GET {{baseUrl}}/api/produtos/{{produtoId}}
+
+### 8. Atualizar completamente — 200
+PUT {{baseUrl}}/api/produtos/{{produtoId}}
+Content-Type: application/json
+
+{"nome":"Mouse sem fio","preco":79.90,"quantidadeEstoque":5,"categoriaId":{{categoriaId}}}
+
+### 9. Renomear categoria — 200; produtos passam a mostrar o novo nome
+PUT {{baseUrl}}/api/categorias/{{categoriaId}}
+Content-Type: application/json
+
+{"nome":"Tecnologia"}
+
+### 10. Bloquear exclusão de categoria com produto — 409
+DELETE {{baseUrl}}/api/categorias/{{categoriaId}}
+
+### 11. Campos inválidos — 400, com mensagens em campos
+POST {{baseUrl}}/api/produtos
+Content-Type: application/json
+
+{"nome":" ","preco":-1,"quantidadeEstoque":-1,"categoriaId":null}
+
+### 12. Categoria inexistente — 404
+POST {{baseUrl}}/api/produtos
+Content-Type: application/json
+
+{"nome":"Produto sem categoria válida","preco":10,"quantidadeEstoque":1,"categoriaId":999999}
+
+### 13. Nome repetido — 409 (após criar Mouse sem fio)
+POST {{baseUrl}}/api/produtos
+Content-Type: application/json
+
+{"nome":"MOUSE SEM FIO","preco":10,"quantidadeEstoque":1,"categoriaId":{{categoriaId}}}
+
+### 14. Excluir produto — 204, sem corpo
+DELETE {{baseUrl}}/api/produtos/{{produtoId}}
+
+### 15. Buscar produto excluído — 404
+GET {{baseUrl}}/api/produtos/{{produtoId}}
+
+### 16. Excluir categoria agora sem produtos — 204
+DELETE {{baseUrl}}/api/categorias/{{categoriaId}}
